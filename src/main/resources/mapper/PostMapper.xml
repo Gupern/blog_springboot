@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gupern.blog.client.PostMapper">
+
+    <!-- type为类，其属性对应property，column对应sql中的名/别名   -->
+    <resultMap id="PostListMap" type="com.gupern.blog.client.PostList">
+        <result column="guid" jdbcType="VARCHAR" property="guid" />
+        <result column="post_date" jdbcType="TIMESTAMP" property="postDate" />
+        <result column="post_title" jdbcType="VARCHAR" property="postTitle" />
+    </resultMap>
+    <!-- resultType为返回的类，一般为Dao, #{} 为传进来的变量，需要指定resultMap才可以映射成功
+        TODO 需改为分页-->
+    <select id="SelectPostList" resultType="com.gupern.blog.client.PostList" resultMap="PostListMap">
+        select guid,
+            post_date as post_date,
+            post_title
+        from posts limit #{id}
+    </select>
+<!--    <select id="SelectPost" resultType="com.gupern.blog.client.PostList">-->
+<!--        select guid, post_date, post_title from posts limit #{page}-->
+<!--    </select>-->
+
+</mapper>
