@@ -5,5 +5,6 @@ import com.github.pagehelper.Page;
 import java.util.List;
 
 public interface ClientService {
-    Page<Post> getClientList();
+    Page<Post> getClientPostList();
+    Post getClientPostDetail(long id);
 }

@@ -12,7 +12,11 @@ public class ClientServiceImpl implements ClientService{
     @Autowired
     PostMapper postMapper;
 
-    public Page<Post> getClientList() {
-        return postMapper.SelectPostList();
+    public Page<Post> getClientPostList() {
+        return postMapper.selectPostList();
+    }
+
+    public Post getClientPostDetail(long id) {
+        return postMapper.selectPostDetail(id);
     }
 }

@@ -11,17 +11,6 @@ import java.util.List;
 @RequestMapping("/client")
 public class ClientController {
 
-    @Autowired
-    private ClientServiceImpl clientService;
-
-    // 只需要GET请求即可，不需要建立负责的RequestBody类
-    @RequestMapping(value = "/list/{pageNum}/{pageSize}", method = RequestMethod.GET)
-    @ResponseBody
-    public Page<Post> clientPostList(@PathVariable(name = "pageNum") int pageNum,
-                                 @PathVariable(name = "pageSize") int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        return clientService.getClientList();
-    }
 
     /* *
         @PostMapping(path = "/demo1")
@@ -29,4 +18,30 @@ public class ClientController {
             System.out.println(person.toString());
         }
     */
+
+
+
+
+    @Autowired
+    private ClientServiceImpl clientService;
+
+    // 只需要GET请求即可，不需要建立负责的RequestBody类
+    @RequestMapping(value = "/list/{pageNum}/{pageSize}", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<Post> clientPostList(@PathVariable(name = "pageNum") int pageNum,
+                                     @PathVariable(name = "pageSize") int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return clientService.getClientPostList();
+    }
+
+    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Post clientPostDetail(@PathVariable(name = "id") long id) {
+        return clientService.getClientPostDetail(id);
+    }
+
+
+
+
+
 }

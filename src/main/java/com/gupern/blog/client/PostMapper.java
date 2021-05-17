@@ -12,5 +12,6 @@ import java.util.List;
  */
 @Repository
 public interface PostMapper {
-    Page<Post> SelectPostList();
+    Page<Post> selectPostList();
+    Post selectPostDetail(long id);
 }
