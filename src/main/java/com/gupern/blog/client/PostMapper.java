@@ -1,5 +1,6 @@
 package com.gupern.blog.client;
 
+import com.github.pagehelper.Page;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,7 +12,5 @@ import java.util.List;
  */
 @Repository
 public interface PostMapper {
-//    DBPostListDao SelectPost(int id);
-    List<PostList> SelectPostList(int page);
-
+    Page<Post> SelectPostList();
 }
