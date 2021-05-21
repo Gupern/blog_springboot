@@ -24,6 +24,7 @@
         FROM posts
         WHERE post_type = "post"
             AND post_status = "publish"
+        ORDER BY post_date DESC
     </select>
     <select id="selectPostDetail" resultType="com.gupern.blog.client.Post" resultMap="PostMap">
         SELECT post_title,
