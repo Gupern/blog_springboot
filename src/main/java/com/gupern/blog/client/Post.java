@@ -1,5 +1,6 @@
 package com.gupern.blog.client;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
@@ -39,6 +40,7 @@ public class Post {
         this.postTitle = postTitle;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getPostDate() {
         return postDate;
     }
@@ -71,6 +73,7 @@ public class Post {
         this.postContent = postContent;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getPostModified() {
         return postModified;
     }
