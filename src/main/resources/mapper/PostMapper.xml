@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gupern.blog.client.PostMapper">
+
+    <!-- type为类，其属性对应property，column对应sql中的名/别名   -->
+    <resultMap id="PostMap" type="com.gupern.blog.client.Post">
+        <result column="post_title" jdbcType="VARCHAR" property="postTitle" />
+        <result column="post_date" jdbcType="TIMESTAMP" property="postDate" />
+        <result column="guid" jdbcType="VARCHAR" property="guid" />
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="post_content" jdbcType="VARCHAR" property="postContent" />
+        <result column="post_modified" jdbcType="TIMESTAMP" property="postModified" />
+        <result column="post_type" jdbcType="VARCHAR" property="postType" />
+        <result column="post_status" jdbcType="VARCHAR" property="postStatus" />
+    </resultMap>
+    <!-- resultType为返回的类，一般为Dao, #{} 为传进来的变量，需要指定resultMap才可以映射成功-->
+    <select id="selectPostList" resultType="com.gupern.blog.client.Post" resultMap="PostMap">
+        SELECT post_title,
+            post_date,
+            guid,
+            id,
+            post_type,
+            post_status
+        FROM posts
+        WHERE post_type = "post"
+            AND post_status = "publish"
+        ORDER BY post_date DESC
+    </select>
+    <select id="selectPostDetail" resultType="com.gupern.blog.client.Post" resultMap="PostMap">
+        SELECT post_title,
+            post_date,
+            guid,
+            id,
+            post_content,
+            post_modified,
+            post_type,
+            post_status
+        FROM posts
+        WHERE id = #{id}
+    </select>
+
+</mapper>
